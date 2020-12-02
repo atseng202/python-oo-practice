@@ -23,6 +23,10 @@ class SerialGenerator:
         self.start = start
         self.counter = start
 
+    def __repr__(self):
+        """ Returns string with useful information about SerialGenerator instance """
+        return f"<{type(self)} start={self.start} next={self.counter}>"
+
     def generate(self):
         """ Return the next sequential number based on start attribute """
         curr_val = self.counter
