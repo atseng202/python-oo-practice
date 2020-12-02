@@ -14,6 +14,7 @@ class WordFinder:
         """ Opens file to read and returns a list of those words in file """
         file = open(self.file_path, "r")
         words = []
+        # can use list comprehension
         for line in file:
             if self.is_valid_word(line):
                 words.append(line.strip())
@@ -21,9 +22,9 @@ class WordFinder:
         return words
 
     def is_valid_word(self, line):
-        """ Takes in a line from the file and returns true or false. 
-            Returns true if that line is a word. False, otherwise. """
-        return isinstance(line, str)
+        """ No filter for normal word list. Always True """
+        return True
+        # raise NotImplementedError
 
     def words_read(self):
         """ Prints out number of words read """
@@ -34,11 +35,13 @@ class WordFinder:
         return choice(self.words)
 
 
-class RandomWordFinder(WordFinder):
+class SpecialWordFinder(WordFinder):
     """ WordFinder subclass that returns only words in the file, 
     but never returns blank lines or comments """
+
     def is_valid_word(self, line):
         """ Takes in the line and returns boolean.
             Returns true if line is a word 
             Returns false if line is blank or comment """
+
         return bool(line.strip() and (not line.startswith('#')))
