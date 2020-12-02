@@ -13,11 +13,7 @@ class WordFinder:
     def get_words(self):
         """ Opens file to read and returns a list of those words in file """
         file = open(self.file_path, "r")
-        words = []
-        # can use list comprehension
-        for line in file:
-            if self.is_valid_word(line):
-                words.append(line.strip())
+        words = [line.strip() for line in file if self.is_valid_word(line)]
         file.close()
         return words
 
